@@ -6,8 +6,9 @@
  * Time: 11:18
  */
 
-define('APP', ROOT . '/app');
-define('MODULES', ROOT . '/modules');
+define('APP', ROOT . DIRECTORY_SEPARATOR . 'app');
+define('MODULES', ROOT . DIRECTORY_SEPARATOR . 'modules');
+define('MODELS', ROOT . DIRECTORY_SEPARATOR . 'models');
 
 /**
  * 动态载入脚本
@@ -16,7 +17,7 @@ define('MODULES', ROOT . '/modules');
  */
 function load($filename)
 {
-    $file = '/' . $filename . '.php';
+    $file = DIRECTORY_SEPARATOR . $filename . '.php';
     if (is_file($file)) {
         include_once $file;
         return true;
@@ -30,7 +31,13 @@ function load($filename)
  */
 function loadApp($filename)
 {
-    load(APP . '/' . $filename);
+    load(APP . DIRECTORY_SEPARATOR . $filename);
+}
+
+function loadModel($filename)
+{
+    $filename = str_replace('_', DIRECTORY_SEPARATOR, $filename);
+    load(MODELS . DIRECTORY_SEPARATOR . $filename);
 }
 
 /**

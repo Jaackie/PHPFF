@@ -11,7 +11,7 @@ loadApp('tool');
 loadApp('router');
 loadApp('exception');
 loadApp('response');
-
+loadApp('request');
 
 /**
  * 运行app
@@ -40,6 +40,7 @@ function runBefore()
 function run($uri = null)
 {
     runInfo('running...');
+    $uri = $uri == null ? getRequestUri() : $uri;
     $route = getRoute($uri);
 
     try {

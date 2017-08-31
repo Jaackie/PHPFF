@@ -9,4 +9,4 @@ define('ROOT', dirname(__DIR__));
 
 require_once ROOT . '/app/app.php';
 
-app();
+app($argv[1]);
